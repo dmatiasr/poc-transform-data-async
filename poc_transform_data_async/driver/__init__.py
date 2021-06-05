@@ -11,3 +11,6 @@ class DriverDB:
 
 	def test_connection(self):
 		return self._engine.table_names()
+
+	def get_table_names(self):
+		self._engine.table_names()

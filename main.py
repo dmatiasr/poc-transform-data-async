@@ -4,12 +4,22 @@
 # database
 #
 
-from poc_transform_data_async.driver import DriverDB
+from poc_transform_data_async.process import process_data, TABLES
+from poc_transform_data_async.driver.driver_source_db import DriverSourceDB
 
 
 def main():
-	origin_db = DriverDB()
-	print(origin_db.test_connection())
+
+	db = DriverSourceDB()
+	results = []
+	for table in TABLES:
+		data = db.get_data_from(table)
+		results.append(data)
+
+	for elems in results:
+		for row in elems:
+			print(row)
+
 
 
 if __name__ == '__main__':

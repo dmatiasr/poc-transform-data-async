@@ -1,5 +1,11 @@
+attrs==21.2.0
 greenlet==1.1.0
 importlib-metadata==4.5.0
+outcome==1.1.0
+Represent==1.6.0.post0
+six==1.16.0
 SQLAlchemy==1.4.17
+sqlalchemy-aio==0.16.0
 typing-extensions==3.10.0.0
 zipp==3.4.1
+

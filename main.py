@@ -3,27 +3,22 @@
 # transform with async method and store data-transformed in another 
 # database
 #
+import asyncio
 
-from poc_transform_data_async.process import process_data, TABLES
+from sqlalchemy_aio import ASYNCIO_STRATEGY
+from sqlalchemy import create_engine, text
+
+from poc_transform_data_async.process import extract, TABLES
 from poc_transform_data_async.driver.driver_source_db import DriverSourceDB
 
 
-def main():
-
-	db = DriverSourceDB()
-	results = []
-	for table in TABLES:
-		data = db.get_data_from(table)
-		results.append(data)
-
-	for elems in results:
-		for row in elems:
-			print(row)
-
+async def main():
+	await extract()
 
 
 if __name__ == '__main__':
-	main()
+	loop = asyncio.get_event_loop()
+	loop.run_until_complete(main())
 
 
 

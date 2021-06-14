@@ -10,7 +10,14 @@ TABLES = (
 )
 
 
-def process_data():
-    origin = DriverSourceDB()
+async def extract():
+    db = DriverSourceDB()
+    results = []
     for table in TABLES:
-        data = origin.get_data_from(table)
+        data = db.get_data_from(table)
+        results.append(data)
+
+    async for elem in data:
+        print( await elem.fetchall())
+
+

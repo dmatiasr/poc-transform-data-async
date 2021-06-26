@@ -8,7 +8,7 @@ import asyncio
 from sqlalchemy_aio import ASYNCIO_STRATEGY
 from sqlalchemy import create_engine, text
 
-from poc_transform_data_async.process import extract, TABLES
+from poc_transform_data_async.extract import extract, TABLES
 from poc_transform_data_async.driver.driver_source_db import DriverSourceDB
 
 
@@ -19,6 +19,5 @@ async def main():
 if __name__ == '__main__':
 	loop = asyncio.get_event_loop()
 	loop.run_until_complete(main())
-
 
 

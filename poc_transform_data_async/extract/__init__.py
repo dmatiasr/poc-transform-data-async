@@ -12,12 +12,9 @@ TABLES = (
 
 async def extract():
     db = DriverSourceDB()
-    results = []
-    for table in TABLES:
-        data = db.get_data_from(table)
-        results.append(data)
 
-    async for elem in data:
-        print( await elem.fetchall())
+    results = (db.get_data_from(table) for table in TABLES)
 
+    serialized_data = await DriverSourceDB.deserialize(results)
 
+    return serialized_data
